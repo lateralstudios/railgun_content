@@ -1,0 +1,6 @@
+var item = $(".block-component[role='<%= resource.id %>']"),
+    row = item.closest(".block-row");
+item.fadeTo(400, 0);
+item.slideUp(400, function(){
+  item.remove();
+});

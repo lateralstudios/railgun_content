@@ -1,0 +1,27 @@
+<% if resource.valid? %>
+var select = $("select<%= params[:update_select] %>"),
+    new_option = $("<option />", {
+      "value": "<%= resource.id %>",
+      "html": "<%= resource.caption %>"
+    });
+
+if(!select.prop("multiple")){
+  select.children("option").prop("selected", false);
+}
+select.append(new_option);
+
+new_option.prop("selected", true);
+if(select.hasClass("chosen-select")){
+  select.trigger("chosen:updated");
+}
+
+$(".modal").modal('hide');
+<% else %>
+
+var form = $("<%= j render("modal_form") %>");
+form.data({
+  "remote": true
+});
+$(".modal form").replaceWith(form);
+
+<% end %>

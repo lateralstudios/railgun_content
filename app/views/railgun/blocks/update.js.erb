@@ -1,0 +1,11 @@
+<% if resource.valid? %>
+var block = $("<%= j render resource %>");
+$(".page-block[role='<%= resource.id %>']").replaceWith(block);
+$(".modal").modal('hide');
+<% else %>
+var form = $("<%= j render("form") %>");
+form.data({
+  "remote": true
+});
+$(".modal form.page-block").replaceWith(form);
+<% end %>

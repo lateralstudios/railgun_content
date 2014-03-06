@@ -1,0 +1,78 @@
+<div class="row-fluid sortable">    
+  <div class="box span12">
+    <div class="box-header" data-original-title>
+      <h2><i class="icon-<%= railgun_resource.options[:icon] %>"></i><span class="break"></span><%= resource.name || "New Page" %></h2>
+      <%= render "action_buttons" %>
+    </div>
+    <div class="box-content">
+    
+      <%= simple_form_for resource, :html => {:class => "form-horizontal"} do |f| %>
+        <div class="row-fluid split-row half">
+          <div class="span6 block-column">
+            <h4>Details</h4>
+            <fieldset>
+            <% editable_columns.select{|item| [:name, :slug, :parent_id].include?(item.key) }.each do |column| %>
+              <%= attribute_field(resource, column, f) %>
+            <% end %>
+            <% [:header_banner, :footer_banner].each do |banner| %>
+              <%= f.association banner, 
+                :input_html => {:class => "page_#{banner.to_s}_asset chosen-select", :role => resource.id},
+                :hint => link_to("Upload a new asset", 
+                  new_asset_path(:update_select => ".page_#{banner.to_s}_asset[role='#{resource.id}']"), :remote => true) %>
+            <% end %>
+            </fieldset>
+          </div>
+          <div class="span6 block-column">
+            <h4>Metadata</h4>
+            <fieldset>
+            <% editable_columns.select{|item| [:meta_title, :meta_keywords, :meta_description].include?(item.key) }.each do |column| %>
+              <%= attribute_field(resource, column, f) %>
+            <% end %>
+            </fieldset>
+          </div>
+        </div>
+
+        <fieldset>  
+          <div class="form-actions align-right">
+            <%= f.button :submit, :class => "btn btn-primary" %>
+            <%= link_to "Cancel", resource || [resource_class], :class => "btn" %>
+          </div>
+        </fieldset>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
+<hr />
+
+<div class="row-fluid sortable">    
+  <div class="box span12">
+    <div data-original-title="" class="box-header">
+      <h2><i class="icon-th"></i><span class="break"></span>Blocks</h2>
+    </div>
+    <div class="box-content">
+      <% if resource.new_record? %>
+      <p>Create page to manage blocks</p>        
+      <% else %>
+      <p>You can add blocks to this page below. Each block can be divided into columns, and has a layout which defines the column sizes. Components can then be created and positioned within the block.</p>       
+      <% end %>  
+    </div>
+  </div>
+</div>
+
+<div class="sortable">
+  <% resource.blocks.ordered.each do |block| %>
+    <%= render block %>
+  <% end %>
+</div>
+
+<% unless resource.new_record? %>
+<div class="row-fluid">
+  <div class="btn-toolbar pull-right"> 
+    <div class="btn-group pull-right">
+      <%= link_to "Add Block", new_block_path(:block => {:page_id => resource.id}), :class => "add-block btn", :remote => true %>
+    </div>
+  </div>
+</div>
+<% end %>

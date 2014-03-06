@@ -1,0 +1,8 @@
+<p class="btn-group">
+  <%= link_to "Edit", edit_component_image_path(component_image), :class => "btn btn-mini", :remote => true %>
+</p> 
+<% if component_image.asset.present? %>
+  <p><%= image_tag component_image.asset.image.content %></p>
+<% else %>
+  <p><em>No image set</em></p>
+<% end %>

@@ -1,0 +1,9 @@
+<%= simple_form_for resource, :remote => true, :html => {:class => "form-horizontal"} do |f| %>
+  <p>
+    <%= link_to "Cancel", component_image_path(resource), :class => "btn btn-mini", :remote => true %>
+    <%= f.button :submit, "Save Changes", :class => "btn btn-primary btn-small" %>
+  </p> 
+  <%= f.association :asset, :input_html => {:class => "component_image_asset chosen-select", :role => resource.id},
+   :hint => link_to("Upload a new asset", 
+    new_asset_path(:update_select => ".component_image_asset[role='#{resource.id}']"), :remote => true) %>
+<% end %>

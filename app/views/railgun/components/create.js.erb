@@ -1,0 +1,23 @@
+<% if resource.valid? %>
+
+var component = $("<%= j render partial: "railgun/components/component", object: resource %>"),
+    block = $(".page-block[role='<%= resource.block.id %>']"),
+    row = block.find(".block-row .block-components");
+
+<% if resource.aligned? %>
+row.find(".aligned[role='<%= resource.alignment %>']").append(component);
+<% else %>
+row.find(".aligned").first().append(component);
+<% end %>
+
+$(".modal").modal('hide');
+
+<% else %>
+
+var form = $("<%= j render("form") %>");
+form.data({
+  "remote": true
+});
+$(".modal form.page-block").replaceWith(form);
+
+<% end %>

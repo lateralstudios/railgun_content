@@ -1,0 +1,8 @@
+<% content_for :title, "New #{resource.to_s}" %>
+
+$(".modal").modal('hide');
+var block = $("<%= j render(partial: "form", layout: "layouts/railgun/modal") %>");
+block.find("form").data({
+  "remote": true
+});
+block.modal('show');

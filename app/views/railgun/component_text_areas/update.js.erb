@@ -1,0 +1,4 @@
+var component = $(".block-component[role='<%= resource.component.id %>']");
+<% if resource.valid? %>
+  component.find(".box-content").html("<%= j render resource %>");
+<% end %>

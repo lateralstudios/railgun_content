@@ -1,0 +1,11 @@
+<%= simple_form_for resource, :html => {:class => "form-horizontal"}, :remote => true do |f| %>
+<%= hidden_field_tag :update_select, params[:update_select] %>
+<div class="modal-body">
+  <%= f.input :caption %>
+  <%= f.input :image %>
+</div>
+<div class="modal-footer">
+  <a data-dismiss="modal" class="btn" href="#">Close</a>
+  <%= f.submit :class => "btn btn-primary" %>
+</div>
+<% end %>

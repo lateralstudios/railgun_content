@@ -1,0 +1,47 @@
+<div class="page-block" role="<%= block.id %>" data-update-position-path="<%= update_position_block_path(block) %>">
+<div class="clearfix">
+  <div class="btn-toolbar block-options pull-left">
+    <div class="btn-group pull-left">
+      <a href="" data-toggle="dropdown" class="btn btn-mini dropdown-toggle">
+        <strong>Block</strong> - <%= block.template %>
+        <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+        <li><%= link_to "Edit", edit_block_path(block), :remote => true %></li>
+        <li><%= link_to "Delete", block_path(block), :remote => true, :method => :delete, :class => "resource-delete", :confirm => "Are you sure you want to delete this block?" %></li>
+      </ul>
+    </div>
+  </div>
+  <div class="btn-toolbar block-move pull-right">
+    <div class="btn-group pull-right">
+      <a class="handle btn btn-mini">
+        <i class="icon-resize-vertical"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="row-fluid sortable block-row">
+
+  <div class="block-components">
+  <% if block.alignable? %>
+    <% block.alignments.each do |alignment| %>
+    <div class="aligned span6" role="<%= alignment %>">
+      <%= render partial: "railgun/components/component", collection: block.components.ordered.aligned(alignment) %>
+    </div>
+    <% end %>
+  <% else %>
+    <div class="aligned span12">
+      <%= render partial: "railgun/components/component", collection: block.components.ordered %>
+    </div>
+  <% end %>
+  </div>
+
+  <div class="btn-toolbar block-controls" data-sort-collapse>
+    <div class="btn-group">
+      <%= link_to "Add Component", new_component_path(:component => {:block_id => block.id}), :class => "add-component btn btn-mini", :remote => true %>
+    </div>
+  </div>
+
+</div>
+</div>

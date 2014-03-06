@@ -1,0 +1,7 @@
+<%= simple_form_for resource, :remote => true do |f| %>
+  <p>
+    <%= link_to "Cancel", component_text_area_path(resource), :class => "btn btn-mini", :remote => true %>
+    <%= f.button :submit, "Save Changes", :class => "btn btn-primary btn-small" %>
+  </p> 
+  <%= f.input_field :value, :class => "input-block-level redactor", :rows => 10, :placeholder => "Enter content here" %>
+<% end %>

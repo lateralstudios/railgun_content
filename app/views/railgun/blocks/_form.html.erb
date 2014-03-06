@@ -1,0 +1,10 @@
+<%= simple_form_for resource, :html => {:class => "form-horizontal page-block"} do |f| %>
+<div class="modal-body">
+  <%= f.association :page, as: :hidden %>
+  <%= f.input :template, collection: Railgun::Block::TEMPLATES, include_blank: false %>
+</div>
+<div class="modal-footer">
+  <a data-dismiss="modal" class="btn" href="#">Close</a>
+  <%= f.submit :class => "btn btn-primary" %>
+</div>
+<% end %>

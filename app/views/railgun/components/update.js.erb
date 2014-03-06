@@ -1,0 +1,47 @@
+<% if resource.valid? %>
+
+var component = $("<%= j render partial: "railgun/components/component", object: resource %>"),
+    original = $(".block-component[role='<%= resource.id %>']"),
+    block = $(".page-block[role='<%= resource.block.id %>']"),
+    row = block.find(".block-row");
+
+original.remove();
+
+<% if resource.aligned? %>
+row.find(".aligned[role='<%= resource.alignment %>']").append(component);
+<% else %>
+row.find(".block-controls").before(component);
+<% end %>
+
+//// This should be subclass specific ////
+
+var csrf_token = $('meta[name=csrf-token]').attr('content');
+var csrf_param = $('meta[name=csrf-param]').attr('content');
+var params;
+if (csrf_param !== undefined && csrf_token !== undefined) {
+  params = csrf_param + "=" + encodeURIComponent(csrf_token);
+}
+component.find('.redactor').redactor(
+  { "imageUpload":"/redactor_rails/pictures?" + params,
+    "imageGetJson":"/redactor_rails/pictures",
+    "fileUpload":"/redactor_rails/documents?" + params,
+    "fileGetJson":"/redactor_rails/documents",
+    "path":"/assets/redactor-rails",
+    "css":"style.css",
+    "buttons":['html', '|', 'formatting', '|', 'bold', 'italic', 'deleted', '|', 'unorderedlist', 'orderedlist', 'outdent', 'indent', '|', 'image', 'video', 'table', 'link', '|', 'horizontalrule']
+  }
+);
+
+//// End subclass specific ////
+
+$(".modal").modal('hide');
+
+<% else %>
+
+var form = $("<%= j render("form") %>");
+form.data({
+  "remote": true
+});
+$(".modal form.page-block").replaceWith(form);
+
+<% end %>

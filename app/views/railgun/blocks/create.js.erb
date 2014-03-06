@@ -1,0 +1,12 @@
+<% if resource.valid? %>
+var block = $("<%= j render resource %>");
+$(".add-block").closest(".row-fluid").before(block);
+$(".modal").modal('hide');
+<% else %>
+var form = $("<%= j render("form") %>");
+form.data({
+  "remote": true
+});
+$(".modal form.page-block").replaceWith(form);
+<% end %>
+

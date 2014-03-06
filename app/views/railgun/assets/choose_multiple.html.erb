@@ -1,0 +1,11 @@
+<%= simple_form_for :asset, :url => [:upload_multiple, :assets], :html => {:id => "upload_multiple_images", :class => "form-horizontal"}, :multipart => true do |f|  %>
+	<fieldset>
+		<div class="form-row">
+			<%= f.input :files, :as => :file, :input_html => {:id => "fileupload", :data => {:url => url_for([:upload_multiple, :assets])}, :multiple => true} %>
+		</div>
+		<div class="form-actions">
+			<%= f.button :submit, "Start Upload", :id => "fileupload_button", :class => "btn btn-primary" %>
+			<%= link_to "Cancel", [resource_class], :class => "btn" %>
+		</div>
+  </fieldset>
+<% end %>

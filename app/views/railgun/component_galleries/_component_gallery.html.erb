@@ -1,0 +1,14 @@
+<p class="btn-group">
+  <%= link_to "Edit", edit_component_gallery_path(component_gallery), :class => "btn btn-mini", :remote => true %>
+</p> 
+<p><strong><%= component_gallery.title %></strong></p>
+<p><%= image_tag component_gallery.cover_image.image.thumb if component_gallery.cover_image %></p>
+<% if component_gallery.assets.any? %>
+  <p>
+  <% component_gallery.assets.each do |asset| %>
+  <%= image_tag asset.image.thumb %>
+  <% end %>
+  </p>
+<% else %>
+  <p><em>No images set</em></p>
+<% end %>

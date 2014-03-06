@@ -1,0 +1,5 @@
+var item = $(".page-block[role='<%= resource.id %>']");
+item.fadeTo(400, 0);
+item.slideUp(400, function(){
+  item.remove();
+})

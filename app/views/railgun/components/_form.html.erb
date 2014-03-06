@@ -1,0 +1,13 @@
+<%= simple_form_for resource.becomes(Railgun::Component), :html => {:class => "form-horizontal page-block"} do |f| %>
+<div class="modal-body">
+  <%= f.association :block, as: :hidden %>
+  <%= f.input :type, collection: Railgun::Component::TYPES, label_method: :humanize, include_blank: false, input_html: {disabled: !resource.new_record?} %>
+  <% if resource.block.alignments.any? %>
+  <%= f.input :alignment, collection: resource.block.alignments, label_method: :humanize, include_blank: false %>
+  <% end %>
+</div>
+<div class="modal-footer">
+  <a data-dismiss="modal" class="btn" href="#">Close</a>
+  <%= f.submit :class => "btn btn-primary" %>
+</div>
+<% end %>

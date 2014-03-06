@@ -1,0 +1,13 @@
+var component = $(".block-component[role='<%= resource.component.id %>']");
+
+<% if resource.valid? %>
+  component.find(".box-content").html("<%= j render resource %>");
+<% else %>
+  component.find(".box-content").html("<%= j render "form" %>");
+
+  component.find('.chosen-select').chosen({
+    allow_single_deselect: true,
+    no_results_text: 'No results matched',
+    width: '200px'
+  });
+<% end %>
