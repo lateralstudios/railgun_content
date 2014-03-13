@@ -91,7 +91,8 @@ window.Railgun = {
         collapse: "[data-sort-collapse]",
         ajaxData: function(row, i){
           return 'insert_at=' + i;
-        }
+        },
+        connectWith: false
       }
       options = $.extend(default_options, options);
       el.sortable({
