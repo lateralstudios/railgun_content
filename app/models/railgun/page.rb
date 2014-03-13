@@ -14,9 +14,9 @@ class Railgun::Page < ActiveRecord::Base
 
   scope :ordered, order("position ASC")
 
-  scope :in_main_nav, where("id != ?", 3) # This should use a db attribute
+  scope :in_main_nav, where("slug != ?", "home")
 
-  attr_accessible :meta_description, :meta_keywords, :meta_title, :name, :slug, :position, 
+  attr_accessible :meta_description, :meta_keywords, :meta_title, :name, :slug, :position,
     :parent_id, :header_banner_id, :footer_banner_id
 
   validates :name, :slug, :presence => true
@@ -56,7 +56,7 @@ private
   end
 
   def update_url
-    if slug_changed? || ancestry_changed? 
+    if slug_changed? || ancestry_changed?
       self.url = generate_url
     end
     return true
