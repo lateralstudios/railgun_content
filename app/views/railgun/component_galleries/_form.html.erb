@@ -2,14 +2,14 @@
   <p>
     <%= link_to "Cancel", component_gallery_path(resource), :class => "btn btn-mini", :remote => true %>
     <%= f.button :submit, "Save Changes", :class => "btn btn-primary btn-small" %>
-  </p> 
+  </p>
   <%= f.input :title %>
 
   <%= f.association :cover_image, :input_html => {:class => "component_gallery_cover_image chosen-select", :role => resource.id},
-   :hint => link_to("Upload a new asset", 
+   :hint => link_to("Upload a new asset",
     new_asset_path(:update_select => ".component_gallery_cover_image[role='#{resource.id}']"), :remote => true) %>
 
   <%= f.association :assets, :input_html => {:class => "component_gallery_assets chosen-select", :role => resource.id},
-   :hint => link_to("Upload a new asset", 
+   :hint => link_to("Upload a new asset",
     new_asset_path(:update_select => ".component_gallery_assets[role='#{resource.id}']"), :remote => true) %>
 <% end %>
