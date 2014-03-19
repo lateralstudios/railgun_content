@@ -29,7 +29,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency "jquery-ui-rails"
   s.add_dependency "redactor-rails"
-  s.add_dependency "chosen-rails"
   s.add_dependency "remotipart", '~> 1.2'
 
 end

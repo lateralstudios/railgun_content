@@ -11,6 +11,8 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery.ui.all
+//= require railgun_content/lib/jquery-migrate
+//= require railgun_content/lib/chosen/chosen.jquery
 
 $(document).ready(function(){
 
@@ -51,6 +53,7 @@ window.Railgun = {
       }
       el.chosen({
         allow_single_deselect: true,
+        allow_sortable: true,
         no_results_text: 'No results matched',
         width: '200px'
       });
