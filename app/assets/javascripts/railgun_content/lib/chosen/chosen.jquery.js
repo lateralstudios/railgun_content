@@ -146,12 +146,6 @@ Copyright (c) 2011 by Harvest
         var optionjq = $(option);
         var html = optionjq.html();
 
-        // set the list options id correctly now.
-        var liitem = $('.chzn-results li:contains("' + html + '")', this.container);
-        var id = liitem.attr('id');
-        id = id.substr(0, id.lastIndexOf('_')) + '_' + i;
-        liitem.attr('id', id);
-
         // re-add the items one-by-one
         var item = {
           array_index: i,

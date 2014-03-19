@@ -12,8 +12,8 @@ module RailgunContent
     end
 
     def self.register_assets
-      Railgun.config.register_stylesheets += %w(redactor-rails chosen railgun_content/application)
-      Railgun.config.register_javascripts += %w(redactor-rails chosen-jquery
+      Railgun.config.register_stylesheets += %w(redactor-rails railgun_content/application)
+      Railgun.config.register_javascripts += %w(redactor-rails
       railgun_content/application)
     end
 

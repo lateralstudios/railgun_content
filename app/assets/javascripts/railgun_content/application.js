@@ -14,6 +14,8 @@
 //= require railgun_content/lib/jquery-migrate
 //= require railgun_content/lib/chosen/chosen.jquery
 
+jQuery.migrateMute = true;
+
 $(document).ready(function(){
 
   $("ul.pages").on("ajax:success", ".resource-delete", function(event, data){
