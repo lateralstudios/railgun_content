@@ -1,7 +1,8 @@
 class Railgun::ComponentGallery < ActiveRecord::Base
 
   has_one :component, as: :contentable
-  has_and_belongs_to_many :assets, :join_table => :railgun_assets_component_galleries
+  has_many :component_gallery_assets, :order => "position"
+  has_many :assets, through: :component_gallery_assets
 
   belongs_to :cover_image, class_name: "Railgun::Asset"
 

@@ -1,6 +1,5 @@
 module RailgunContent
   class Engine < ::Rails::Engine
-    isolate_namespace Railgun
 
     def self.integrate_with_railgun
       add_to_railgun
