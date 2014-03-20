@@ -7,7 +7,23 @@ require "jquery-ui-rails"
 require "redactor-rails"
 require "remotipart"
 
+require "railgun_content/application"
 require "railgun_content/engine"
 
 module RailgunContent
+
+  class << self
+    attr_accessor :application
+
+    def application
+    	@application ||= ::RailgunContent::Application.new
+    end
+	end
+
+  def self.components
+    application.components
+  end
+
+
+
 end

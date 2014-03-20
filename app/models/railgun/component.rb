@@ -4,8 +4,6 @@ class Railgun::Component < ActiveRecord::Base
 
   belongs_to :contentable, polymorphic: true, dependent: :destroy
 
-  TYPES = %w(text_area button image promotion slideshow gallery testimonial map embed)
-
   acts_as_list scope: [:block_id, :alignment]
 
   attr_accessible :position, :alignment, :block, :block_id, :type
@@ -17,7 +15,7 @@ class Railgun::Component < ActiveRecord::Base
 
   before_create :assign_contentable
 
-  validates :type, inclusion: { in: TYPES }, allow_nil: true
+  validates :type, inclusion: { in: RailgunContent.components }, allow_nil: true
 
   def aligned?
     block.alignable? && alignment.present?

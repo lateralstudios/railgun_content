@@ -1,4 +1,4 @@
-class Railgun::ComponentImagesController < Railgun::ResourcesController
+class Railgun::ComponentImagesController < RailgunContent::ComponentsController
 
   model Railgun::ComponentImage
 

@@ -1,4 +1,4 @@
-class Railgun::ComponentGalleriesController < Railgun::ResourcesController
+class Railgun::ComponentGalleriesController < RailgunContent::ComponentsController
 
   model Railgun::ComponentGallery
 

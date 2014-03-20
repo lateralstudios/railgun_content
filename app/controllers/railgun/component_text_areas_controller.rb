@@ -1,4 +1,4 @@
-class Railgun::ComponentTextAreasController < Railgun::ResourcesController
+class Railgun::ComponentTextAreasController < RailgunContent::ComponentsController
 
   model Railgun::ComponentTextArea
 
