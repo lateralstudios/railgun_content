@@ -1,3 +1,7 @@
+class Railgun::ComponentGallery < ActiveRecord::Base
+  has_and_belongs_to_many :assets, join_table: :railgun_assets_component_galleries
+end
+
 class ConvertRailgunAssetsComponentGalleriesToThroughTable < ActiveRecord::Migration
   def up
     create_table :railgun_component_gallery_assets do |t|
