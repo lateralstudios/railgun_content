@@ -11,6 +11,7 @@ class Railgun::Component < ActiveRecord::Base
   attr_writer :type
 
   scope :aligned, lambda{|alignment| where(:alignment => alignment)}
+  scope :not_aligned, where("alignment IS NULL OR alignment = ''")
   scope :ordered, order("position ASC")
 
   before_create :assign_contentable

@@ -14,6 +14,8 @@ class Railgun::Block < ActiveRecord::Base
 
   scope :ordered, order("position ASC")
 
+  after_save :align_unaligned_components!
+
   def alignable?
     alignments.any?
   end
@@ -24,6 +26,17 @@ class Railgun::Block < ActiveRecord::Base
       []
     else
       ["left", "right"]
+    end
+  end
+
+  private
+
+  def align_unaligned_components!
+    if template_changed? && alignments.any?
+      components.not_aligned.each do |component|
+        component.alignment = alignments.first
+        component.save!
+      end
     end
   end
 
