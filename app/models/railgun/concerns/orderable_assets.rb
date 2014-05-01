@@ -2,8 +2,22 @@ module Railgun
   module Concerns
     module OrderableAssets
 
-      def asset_ids=(ids)
-        through_class = "#{self.class.to_s.demodulize.underscore}_assets".to_sym
+      module ClassMethods
+
+        def ordered_assets(association = :assets)
+          define_method :"#{association.to_s.singularize}_ids=" do |ids|
+            ordered_ids association, ids
+          end
+        end
+
+      end
+
+      def self.included(base)
+        base.extend(ClassMethods)
+      end
+
+      def ordered_ids(association, ids)
+        through_class = "#{self.class.to_s.demodulize.underscore}_#{association}".to_sym
         ids = Array(ids).reject { |id| id.blank? }
         ids.map! { |i| i.to_i }
         ids.each_with_index do |id, index|

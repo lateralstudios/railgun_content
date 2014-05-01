@@ -5,6 +5,7 @@ class Railgun::ComponentGallery < ActiveRecord::Base
   has_many :assets, through: :component_gallery_assets, :order => :position
 
   include Railgun::Concerns::OrderableAssets
+  ordered_assets :assets
 
   belongs_to :cover_image, class_name: "Railgun::Asset"
 
