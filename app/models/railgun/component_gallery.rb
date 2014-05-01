@@ -4,6 +4,8 @@ class Railgun::ComponentGallery < ActiveRecord::Base
   has_many :component_gallery_assets, :order => :position
   has_many :assets, through: :component_gallery_assets, :order => :position
 
+  include Railgun::Concerns::OrderableAssets
+
   belongs_to :cover_image, class_name: "Railgun::Asset"
 
   attr_accessible :title, :cover_image_id, :asset_ids
