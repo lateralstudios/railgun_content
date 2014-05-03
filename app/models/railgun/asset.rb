@@ -16,7 +16,7 @@ private
 
   def guess_caption
     self.caption = self.caption.presence
-    self.caption ||= File.basename(image.path, ".*").gsub("_", " ")
+    self.caption ||= File.basename(image.path, ".*").gsub("_", " ") if image.path
   end
 
 end
