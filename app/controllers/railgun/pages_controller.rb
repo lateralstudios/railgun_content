@@ -29,8 +29,10 @@ class Railgun::PagesController < Railgun::ResourcesController
   end
   member_action :update_position, :method => :put
 
+  protected
+
   def collection
-    inherited_chain
+    @pages ||= end_of_railgun_chain
   end
 
 end
