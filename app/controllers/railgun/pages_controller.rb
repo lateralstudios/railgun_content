@@ -1,3 +1,5 @@
+require 'railgun/resources_controller/positionable'
+
 class Railgun::PagesController < Railgun::ResourcesController
 
   model Railgun::Page
@@ -11,6 +13,8 @@ class Railgun::PagesController < Railgun::ResourcesController
 
   attributes :parent_id, :type => "nested_set", :viewable => false
 
+  include Railgun::Positionable
+
   def create
     create! do |success, failure|
       success.html{ redirect_to [:edit, resource] }
@@ -22,12 +26,6 @@ class Railgun::PagesController < Railgun::ResourcesController
       success.html{ redirect_to [:edit, resource] }
     end
   end
-
-  def update_position
-    resource.insert_at(params[:insert_at].to_i)
-    render nothing: true
-  end
-  member_action :update_position, :method => :put
 
   protected
 

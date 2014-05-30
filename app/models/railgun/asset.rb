@@ -8,6 +8,8 @@ class Railgun::Asset < ActiveRecord::Base
 
   before_validation :guess_caption
 
+  scope :search, ->(keywords){ where("caption LIKE ?", "%#{keywords}%") }
+
   def to_s
     caption
   end

@@ -1,3 +1,5 @@
+require 'railgun/resources_controller/searchable'
+
 class Railgun::AssetsController < Railgun::ResourcesController
 
   model Railgun::Asset
@@ -6,7 +8,9 @@ class Railgun::AssetsController < Railgun::ResourcesController
 
   actions :all
 
-  respond_to :js
+  respond_to :html, :js
+
+  include Railgun::Searchable
 
   def index
     index! do
