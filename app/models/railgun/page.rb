@@ -14,8 +14,7 @@ class Railgun::Page < ActiveRecord::Base
 
   scope :ordered, order("position ASC")
 
-  scope :in_main_nav, where("slug != ? AND hide_from_nav = ?", "home", false)
-  scope :in_nav, where(hide_from_nav: false)
+  scope :in_main_nav, where(hide_from_nav: false)
 
   attr_accessible :meta_description, :meta_keywords, :meta_title, :name, :slug, :position,
     :parent_id, :hide_from_nav, :header_banner_id, :footer_banner_id
