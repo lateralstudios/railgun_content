@@ -33,10 +33,12 @@ class Railgun::Component < ActiveRecord::Base
 private
 
   def assign_contentable
-    contentable_class = ("Railgun::"+("component_#{type}".classify)).constantize
-    content = contentable_class.new
-    content.save(:validate => false)
-    self.contentable = content
+    unless contentable.present?
+      contentable_class = ("Railgun::"+("component_#{type}".classify)).constantize
+      content = contentable_class.new
+      content.save(:validate => false)
+      self.contentable = content
+    end
   end
 
 end
