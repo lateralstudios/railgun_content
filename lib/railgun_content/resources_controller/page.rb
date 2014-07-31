@@ -5,8 +5,7 @@ module RailgunContent
 
     def self.included(base)
       base.instance_eval do
-        include Railgun::Positionable
-        
+
     		option :icon, "file"
 
         actions :all, :except => [:show]
