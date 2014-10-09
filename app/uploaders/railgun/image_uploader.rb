@@ -67,6 +67,21 @@ class Railgun::ImageUploader < CarrierWave::Uploader::Base
     process :quality => 80
   end
 
+  version :blog_thumb do
+    process resize_to_fill: [235, 240]
+    process quality: 80
+  end
+
+  version :blog_large do
+    process resize_to_fill: [1200, 560]
+    process quality: 80
+  end
+
+  version :author_image do
+    process resize_to_fill: [40, 40]
+    process quality: 80
+  end
+
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_white_list
