@@ -71,10 +71,10 @@ window.Railgun = {
       if (csrf_param !== undefined && csrf_token !== undefined) {
         params = csrf_param + "=" + encodeURIComponent(csrf_token);
       }
-      var default_options = { "imageUpload":"/admin/redactor_rails/pictures?" + params,
-        "imageGetJson":"/admin/redactor_rails/pictures",
-        "fileUpload":"/admin/redactor_rails/documents?" + params,
-        "fileGetJson":"/admin/redactor_rails/documents",
+      var default_options = { "imageUpload":"/redactor_rails/pictures?" + params,
+        "imageGetJson":"/redactor_rails/pictures",
+        "fileUpload":"/redactor_rails/documents?" + params,
+        "fileGetJson":"/redactor_rails/documents",
         "path":"/assets/admin/redactor-rails",
         "css":"style.css",
         "buttons":['html', '|', 'formatting', '|', 'bold', 'italic', 'deleted', '|', 'unorderedlist', 'orderedlist', 'outdent', 'indent', '|', 'image', 'video', 'table', 'link', '|', 'horizontalrule'],
