@@ -1,6 +1,6 @@
 class Railgun::Page < ActiveRecord::Base
 
-  has_many :blocks
+  has_many :blocks, dependent: :destroy
 
   belongs_to :header_banner, class_name: "Asset"
   belongs_to :footer_banner, class_name: "Asset"
