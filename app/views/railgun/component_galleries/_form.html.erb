@@ -8,7 +8,7 @@
   <%= f.association :cover_image, :input_html => {:class => "component_gallery_cover_image chosen-select", :role => resource.id},
    :hint => link_to("Upload a new asset",
     new_asset_path(:update_select => ".component_gallery_cover_image[role='#{resource.id}']"), :remote => true) %>
-  <%= f.association :assets, :input_html => {:class => "component_gallery_assets chosen-select", :role => resource.id},
-    collection: (resource.assets + Railgun::Asset.all).uniq, :hint => link_to("Upload a new asset",
+  <%= f.association :assets, :input_html => {:class => "component_gallery_assets searchable_asset", :role => resource.id},
+    collection: resource.assets, :hint => link_to("Upload a new asset",
     new_asset_path(:update_select => ".component_gallery_assets[role='#{resource.id}']"), :remote => true) %>
 <% end %>
