@@ -17,6 +17,9 @@ Railgun.searchableAsset = function(){
     $search.on('keyup', function(){
       search($search);
     });
+    $search.on('focus', function(){
+      search($search);
+    });
     $select.before($search);
     $select.after($selection);
     $('.asset-selection').on('click', 'span.delete', function(){
@@ -37,13 +40,9 @@ Railgun.searchableAsset = function(){
 
   function search($search){
     var keywords = $search.val();
-    if(keywords == ''){
-      $search.next('.search-asset-results').remove();
-    }else{
-      $.get('/admin/assets', {keywords: keywords}, function(data){
-        showResults($search, data);
-      }, 'json');
-    }
+    $.get('/admin/assets', {keywords: keywords}, function(data){
+      showResults($search, data);
+    }, 'json');
   }
 
   function recreateItems($selection, $select){
@@ -69,7 +68,7 @@ Railgun.searchableAsset = function(){
     var $select = $search.next('.searchable_asset');
     var $results = $('<div class="search-asset-results" />');
     $.each(data, function(idx, item){
-      if($results.children('.asset-results-item').length > 4) return false;
+      if($results.children('.asset-results-item').length >= 10) return false;
       if($select.children('option[value="'+item.id+'"]').length) return;
       var $item = $('<div class="asset-results-item" />');
       $item.html(item.caption);
